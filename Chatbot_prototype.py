@@ -6,12 +6,12 @@ from time import sleep
 # set variables
 
 name = "UNNAMED USER"
-question_to_response = {"Who are you?": "I am A ChatBot.", "How old are you?": "Infinitely old.", "What is your name?":"ChatBot0110010"}
+question_to_response = {"Who are you?": "I am A ChatBot.", "How old are you?": "Infinitely old.", "What is your name?":"Aperture Laboratories Chatbot 01"}
 
 # define functions
 
 def render_bot(response):
-    print("CHATBOT0110010 > " + response)
+    print("Aperture Laboratories Chatbot 01 > " + response)
 def get_answer():
     answer = input(name + " > ")
     if answer == "quit":
@@ -54,3 +54,9 @@ print("Good luck!\n")
 while True:
     render_bot("What is your name?")
     name = get_answer()
+    render_bot("Do you want to ask a question?")
+    answer = get_answer()
+    if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
+        render_bot("Ask Away!")
+        answer = get_answer()
+        render_bot(question_to_response["answer"])
