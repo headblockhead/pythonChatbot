@@ -59,4 +59,4 @@ while True:
     if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
         render_bot("Ask Away!")
         answer = get_answer()
-        render_bot(question_to_response["answer"])
+        render_bot(question_to_response[answer])
