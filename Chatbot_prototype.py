@@ -5,6 +5,8 @@ from time import sleep
 
 # set variables
 
+answering_mode = False
+asking_mode = False
 name = "UNNAMED USER"
 question_to_response = {"Who are you?": "I am A ChatBot.", "How old are you?": "Infinitely old.", "What is your name?":"Aperture Laboratories Chatbot 01"}
 
@@ -13,9 +15,18 @@ question_to_response = {"Who are you?": "I am A ChatBot.", "How old are you?": "
 def render_bot(response):
     print("Aperture Laboratories Chatbot 01 > " + response)
 def get_answer():
+    answering_mode = False
+    asking_mode = False
     answer = input(name + " > ")
-    if answer == "quit":
+    if answer == "quit" or answer == "Quit":
         exit()
+    if answer == "exit" or answer == "Exit":
+        if asking_mode == True:
+            asking_mode = False
+        elif answering_mode == True:
+            answering_mode = False
+        else:
+            render_bot("There is noting to exit from. If you whish to exit the program, Type \"Quit\"")
     return answer
 def logo() :
     print("              .,-:;//;:=,")
@@ -59,4 +70,9 @@ while True:
     if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
         render_bot("Ask Away!")
         answer = get_answer()
-        render_bot(question_to_response[answer])
+        while asking_mode:
+            if answer in question_to_response:
+                render_bot(question_to_response[answer])
+            else:   
+                render_bot("I Dont understand that Question. If you would like to choose wheather to ask or answer again, type \"Exit\" to exit asking mode.")
+            answer = get_answer()
