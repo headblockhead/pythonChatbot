@@ -73,8 +73,8 @@ print("Good luck!\n")
 
 
 while True:
-    ask_or_answer = ask_or_answer()
-    if ask_or_answer == 1:
+    ask_output = ask_or_answer()
+    if ask_output == 1:
         asking_mode = True
         render_bot("Ask Away!")
         answer = get_answer()
@@ -86,7 +86,7 @@ while True:
             else:   
                 render_bot("I Dont understand that Question. If you would like to choose wheather to ask or answer again, type \"Exit\" to exit asking mode.")
                 answer = get_answer()
-    elif ask_or_answer == 2:
+    elif ask_output == 2:
         answering_mode = True
     
     
