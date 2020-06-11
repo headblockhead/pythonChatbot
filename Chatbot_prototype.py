@@ -20,13 +20,6 @@ def get_answer():
     answer = input(name + " > ")
     if answer == "quit" or answer == "Quit":
         exit()
-    if answer == "exit" or answer == "Exit":
-        if asking_mode == True:
-            asking_mode = False
-        elif answering_mode == True:
-            answering_mode = False
-        else:
-            render_bot("There is noting to exit from. If you whish to exit the program, Type \"Quit\"")
     return answer
 def logo() :
     print("              .,-:;//;:=,")
@@ -50,6 +43,22 @@ def logo() :
     print("         ,:+$+-,/H~MMMMMMM@= =,")
     print("               =++%%%%+/:-.")
 
+def ask_or_answer() :
+    render_bot("Do you want to ask a question?")
+    answer = get_answer()
+    if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
+        return 1
+    elif answer == "No" or answer == "n" or answer == "no" or answer == "n" or answer == "0":
+        render_bot("Do you want to be asked questions?")
+        answer = get_answer()
+        if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
+            return 2
+        else:
+            return 3
+
+# get name
+render_bot("What is your name?")
+name = get_answer()
 
 # Show information
 
@@ -62,17 +71,22 @@ print("Good luck!\n")
 
 # loop the program
 
+
 while True:
-    render_bot("What is your name?")
-    name = get_answer()
-    render_bot("Do you want to ask a question?")
-    answer = get_answer()
-    if answer == "Yes" or answer == "Y" or answer == "yes" or answer == "y" or answer == "1":
+    ask_or_answer = ask_or_answer()
+    if ask_or_answer == 1:
+        asking_mode = True
         render_bot("Ask Away!")
         answer = get_answer()
         while asking_mode:
             if answer in question_to_response:
                 render_bot(question_to_response[answer])
+            elif answer == "exit":
+                asking_mode = False
             else:   
                 render_bot("I Dont understand that Question. If you would like to choose wheather to ask or answer again, type \"Exit\" to exit asking mode.")
-            answer = get_answer()
+                answer = get_answer()
+    elif ask_or_answer == 2:
+        answering_mode = True
+    
+    
