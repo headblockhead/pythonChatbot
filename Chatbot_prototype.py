@@ -78,13 +78,14 @@ while True:
         asking_mode = True
         render_bot("Ask Away!")
         answer = get_answer()
-        while asking_mode:
+        while asking_mode == True:
             if answer in question_to_response:
                 render_bot(question_to_response[answer])
-            elif answer == "exit":
+            elif answer == "exit" or answer == "Exit":
                 asking_mode = False
             else:   
                 render_bot("I Dont understand that Question. If you would like to choose wheather to ask or answer again, type \"Exit\" to exit asking mode.")
+            if not not asking_mode:
                 answer = get_answer()
     elif ask_output == 2:
         answering_mode = True
